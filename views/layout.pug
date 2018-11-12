@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        title node knowledgebase app
+        link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+           a.navbar-brand(href='/') KnowledgeBase
+                //- span.navbar-toggler-icon
+                #navbarsExampleDefault.collapse.navbar-collapse
+                    ul.navbar-nav.mr-auto
+                        li.nav-item.active
+                            a.nav-link(href='/') Home 
+                    ul.nav.navbar.navbar-right
+                        if user
+                            li.nav-item
+                                a.nav-link(href='/articles/add') Add Article
+                            li.nav-item
+                                a.nav-link(href='/users/logout') Logout
+                        else
+                            li.nav-item
+                                a.nav-link(href='/users/register') Register
+                            li.nav-item
+                                a.nav-link(href='/users/login') Login
+        .container
+            != messages('message', locals)
+            if errors
+                each error, i in errors
+                    div(class="alert alert-danger") #{error.msg}
+            block content
+            br
+            hr
+            footer
+            p Copyright &copy; 2018
+        script(src="/bower_components/jquery/dist/jquery.js")
+        script(src="/bower_components/bootstrap/dist/js/bootstrap.js")
